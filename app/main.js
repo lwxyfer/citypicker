@@ -1,60 +1,59 @@
 'use strict';
 
-// 通过data-picker做判断,给出API
-
 import { ChineseDistricts as CD} from './citydate.js';
 import { loop } from './loop.js'
 
 let picker = document.querySelector('.am-picker');
 let allSelect = document.querySelectorAll('.am-picker select');
-let provinceNode = allSelect[0];
-let districtNode = allSelect[1];
-let areaNode = allSelect[2];
-let data = {}; // store selected data
+let provinceNode = allSelect[0]; // 省份节点
+let districtNode = allSelect[1]; // 城市节点
+let areaNode = allSelect[2];     // 地区节点
 
-let PROVINCE = `<option value='sf' >--省份--</option>`;
-let DISTRICT = `<option value='sj' >--市级--</option>`;
-let AREA = `<option value='dq'>--地区--</option>`;
+let province = `<option value='sf' >--省份--</option>`;
+let district = `<option value='sj' >--市级--</option>`;
+let area = `<option value='dq'>--地区--</option>`;
 
-// first render province data
-for(let prv in CD[86]) {
-  if(prv && CD[86][prv]) {
-    PROVINCE += `<option value=${prv}>${CD[86][prv]}</option>`;
+// load province data
+for(let provinces in CD[86]) {
+  if(provinces && CD[86][provinces]) {
+    province += `<option value=${provinces}>${CD[86][provinces]}</option>`;
   }
-}
-if( provinceNode && provinceNode.name === 'province') {
-provinceNode.innerHTML = PROVINCE;
-}
-if( districtNode && districtNode.name === 'district') {
-districtNode.innerHTML = DISTRICT;
-}
-if( areaNode && areaNode.name === 'area') {
-areaNode.innerHTML = AREA;
 }
 
-// postcode for different select
-let proCode;
-let disCode;
-let arCode;
-// listener event and change items
-picker.addEventListener('change',function(event){
-  let target = event.target || event.srcElement;
-  // console.log(target.id)
-  // console.log(event.type)
-  if( target.nodeName.toUpperCase() === 'SELECT' && target.name === 'province') {
-    // reset when this is reelected
-    DISTRICT = `<option value='sj'>--市级--</option>`;
-    areaNode.innerHTML = `<option value='dq'>--地区--</option>`;
-    proCode = loop(target,districtNode,DISTRICT);
-    data.province = CD[86][proCode];
+// first render selects
+[provinceNode,districtNode,areaNode].forEach((element,index)=>{
+  let a = [province,district,area]
+  if( element ) {
+    element.innerHTML = a[index];
   }
-  if( target.nodeName.toUpperCase() === 'SELECT' && target.name === 'district' ) {
-    disCode = loop(target,areaNode,AREA);
-    data.district = CD[proCode][disCode]
-  }
-  if( target.nodeName.toUpperCase() === 'SELECT' && target.name === 'area') {
-    arCode = target.options[target.selectedIndex].value;
-    data.area = CD[disCode][arCode];
-  }
-  console.log(data)
 })
+
+// postcode for different selects
+let provinceCode;
+let distinctCode;
+let areaCode;
+let dataSelected = {}; // store selected data
+
+// listen select change and re-render
+picker.addEventListener('change',render,false);
+
+function render(event) {
+  let target = event.target || event.srcElement;
+  let name = target.name;
+  if( target.nodeName.toUpperCase() === 'SELECT') {
+    if( name === 'province') {
+      areaNode.innerHTML = `<option value='dq'>--地区--</option>`;// reset areaNode
+      provinceCode = loop(target,districtNode,district);
+      dataSelected.province = CD[86][provinceCode];
+    }
+    if( name === 'district' ) {
+      distinctCode = loop(target,areaNode,area);
+      dataSelected.district = CD[provinceCode][distinctCode];
+    }
+    if( name === 'area') {
+      areaCode = target.options[target.selectedIndex].value;
+      dataSelected.area = CD[distinctCode][areaCode];
+    }
+    console.log(dataSelected)
+  }
+}
