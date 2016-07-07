@@ -1,3 +1,6 @@
+/*!
+ * city date
+ */
   export const ChineseDistricts = {
     86: {
       110000: '北京市',

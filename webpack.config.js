@@ -1,6 +1,6 @@
 var webpack = require('webpack');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+// var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+// var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
 module.exports = {
   entry: './app/main.js',
