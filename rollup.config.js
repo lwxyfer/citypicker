@@ -3,9 +3,9 @@
  */
 import babel from 'rollup-plugin-babel';
 export default {
-    entry: './app/main.js',
+    entry: './src/main.js',
     format: 'iife',
     plugins: [babel()],
     moduleName: 'picker',
-    dest: './dist/bundle.js'
+    dest: './dist/bundle-global.js'
 };

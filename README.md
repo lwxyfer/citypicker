@@ -2,7 +2,10 @@
 
 提供省份，市级，区级的级联。
 
-# DEMO
+webpack + npm 作为开发工具
+rolllup打包为全局的变量，用来浏览器直接加载
+
+# USAGE
 
 ```
 npm start // open browser: 127.0.0.1:8100
