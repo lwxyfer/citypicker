@@ -2,24 +2,29 @@
   "name": "citypicker",
   "version": "0.0.1",
   "description": "dity picker based on amazeui",
-  "main": "mian.js",
+  "main": "/dist/picker.es.js",
   "dependencies": {
     "webpack-dev-server": "^1.14.1",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
+    "amazeui-doc-util": "^0.7.1",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-es2015-rollup": "^1.1.1",
+    "eslint": "^3.0.1",
+    "gulp": "^3.9.1",
     "html-webpack-plugin": "^2.22.0",
     "rollup": "^0.34.0",
-    "rollup-plugin-babel": "^2.6.1"
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-uglify": "^1.0.1",
+    "uglify-js": "^2.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --progress --colors",
-    "build": "webpack -p --progress --colors"
+    "build": "rollup -c"
   },
   "keywords": [
     "picker",

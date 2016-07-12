@@ -13,12 +13,12 @@ module.exports = {
 	output: {
 		path: './dist',
 		filename: 'picker.js',
-		// library: 'picker',
-		// libraryTarget: 'umd'
+		library: 'picker',
+		libraryTarget: 'umd'
 	},
 	devServer: {
 		inline: true,
-		contentBase: 'dist',
+		contentBase: './demo',
 		port: 8100
 	},
 	module: {
@@ -34,7 +34,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Hello World app',
-			filename: '../docs/doc.html',
+			filename: './docs/doc.html',
 			AMUICDN: 'https://cdnjs.cloudflare.com/ajax/libs/amazeui/2.7.0/',
 			template: './docs/template.html'
 				// hash:true

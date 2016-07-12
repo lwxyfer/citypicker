@@ -1,5 +1,8 @@
-(function (exports) {
-    'use strict';
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global.picker = factory());
+}(this, function () { 'use strict';
 
     /*!
      * city date
@@ -4025,7 +4028,7 @@
       return value;
     }
 
-    function pickerPlugin() {
+    function main () {
         var picker = document.querySelector('.am-picker');
         var allSelect = document.querySelectorAll('.am-picker select');
         var provinceNode = allSelect[0]; // 省份节点
@@ -4082,6 +4085,8 @@
         }
     }
 
-    exports.pickerPlugin = pickerPlugin;
+    // export { pickerPlugin };
 
-}((this.picker = this.picker || {})));
+    return main;
+
+}));
