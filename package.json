@@ -1,13 +1,13 @@
 {
   "name": "citypicker",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "dity picker based on amazeui",
-  "main": "/dist/picker.es.js",
+  "main": "/dist/picker.min.js",
   "dependencies": {
-    "webpack-dev-server": "^1.14.1",
-    "webpack": "^1.13.1"
   },
   "devDependencies": {
+    "webpack-dev-server": "^1.14.1",
+    "webpack": "^1.13.1",
     "amazeui-doc-util": "^0.7.1",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
@@ -23,8 +23,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --progress --colors",
-    "build": "rollup -c"
+    "start": "webpack-dev-server --config webpack.dev.config.js --progress --colors",
+    "build": "rollup -c",
+    "wbuild":"webpack --config webpack.config.js"
   },
   "keywords": [
     "picker",

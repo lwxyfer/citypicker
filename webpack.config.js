@@ -1,9 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-// var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
-// 路径的配置，path是Node的模块
+var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var ROOT_PATH = path.resolve(__dirname);
 var SRC_PATH = path.resolve(ROOT_PATH, 'src');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'dist');
@@ -12,14 +10,9 @@ module.exports = {
 	entry: './src/main.js',
 	output: {
 		path: './dist',
-		filename: 'picker.js',
-		// library: 'picker',
-		// libraryTarget: 'umd'
-	},
-	devServer: {
-		inline: true,
-		contentBase: 'dist',
-		port: 8100
+		filename: 'picker.min.js',
+		libraryTarget: 'umd',
+		umdNamedDefine: true
 	},
 	module: {
 		loaders: [
@@ -35,9 +28,16 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'Hello World app',
 			filename: '../docs/doc.html',
-			AMUICDN: 'https://cdnjs.cloudflare.com/ajax/libs/amazeui/2.7.0/',
-			template: './docs/template.html'
+			prod: false,
+			AMUICDN: '.',
+			template: './docs/template.html',
+			inject: 'body'
 				// hash:true
+		}),
+		new uglifyJsPlugin({
+			compress: {
+				warnings: false
+			}
 		})
 	]
 };

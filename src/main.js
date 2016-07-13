@@ -1,11 +1,10 @@
-'use strict';
 import {
 	ChineseDistricts as CD
-} from './citydate.js';
+} from './citydate';
 import {
 	loop
-} from './loop.js';
-export default function picker() {
+} from './loop';
+export function picker() {
 	let picker = document.querySelector('.am-picker');
 	let allSelect = document.querySelectorAll('.am-picker select');
 	let provinceNode = allSelect[0]; // 省份节点
@@ -55,4 +54,5 @@ export default function picker() {
 			console.log(dataSelected)
 		}
 	}
+	return dataSelected;
 }

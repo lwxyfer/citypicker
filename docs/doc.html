@@ -40,7 +40,7 @@
     <!--
   <link rel="canonical" href="http://www.example.com/">
   -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/amazeui/2.7.0/css/amazeui.min.css" />
+    <link rel="stylesheet" href="./amazeui.min.css" />
     <link rel="stylesheet" href="">
 </head>
 
@@ -63,31 +63,49 @@
     <section class="ask-banner">
         <div class="am-container am-padding-vertical-lg">
             <h1>世界，你好！</h1>
-            <p>欢迎使用 Amaze UI Stater Kit。</p>
+            <p>欢迎使用 Amaze UI Picker。</p>
         </div>
     </section>
 
     <main>
+
         <div class="am-container am-padding-vertical">
+            <div class="am-picker">
+                <select name="province"></select>
+                <select name="district"></select>
+                <select name="area"></select>
+            </div>
+            <br>
             <p>
-                Amaze UI Stater Kit 是一个使用 Webpack、NPM 构建的工作流模板，在此模板上用户可以方便的使用 Amaze UI 开发网页应用。
+                数据获取：
             </p>
-            <p><a href="https://github.com/amazeui/starter-kit" target="_blank" class="am-btn am-btn-success">查看详情</a></p>
-            <p>使用 highlight.js 高亮代码示例：</p>
-            <pre><code class="language-javascript">$(document).ready(function() {
-  $('pre code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
-});</code></pre>
+            <div id="data"></div>
+            <p>
+                提供省、市、区的三级联动
+            </p>
+            <pre><code>div class="am-picker">
+                select name="province"></select>
+                select name="district"></select>
+                select name="area"></select>
+            /div>
+          </code></pre>
         </div>
     </main>
 
     
-            <script src="dist/jquery.min.js"></script>
-            <script src="js/amazeui.min.js"></script>
+            <!-- <script src="jquery.min.js"></script> -->
+            <!-- <script src="amazeui.min.js"></script> -->
             
-                <script src="../dist/picker.js"></script>
+                <script src="../dist/picker.min.js"></script>
                 <!-- Built with love using Web Starter Kit -->
-<script type="text/javascript" src="../dist/picker.js"></script></body>
+                <script>
+                    var dataS = picker();
+                    var show = document.getElementById('data')
+                    console.log(dataS);
+                    document.querySelector('.am-picker').onchange = function() {
+                        show.innerHTML = (dataS.province ? dataS.province : '省：') + ' - ' + (dataS.district ? dataS.district : '市：') + ' - ' + (dataS.area ? dataS.area : '区：')
+                    }
+                </script>
+<script type="text/javascript" src="../dist/picker.min.js"></script></body>
 
 </html>
