@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+// var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var ROOT_PATH = path.resolve(__dirname);
 var SRC_PATH = path.resolve(ROOT_PATH, 'src');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'dist');
@@ -13,6 +13,9 @@ module.exports = {
 		filename: 'picker.min.js',
 		libraryTarget: 'umd',
 		umdNamedDefine: true
+	},
+	resolve: {
+		extensions: ['', '.js']
 	},
 	module: {
 		loaders: [
@@ -34,10 +37,10 @@ module.exports = {
 			inject: 'body'
 				// hash:true
 		}),
-		new uglifyJsPlugin({
-			compress: {
-				warnings: false
-			}
-		})
+		// new uglifyJsPlugin({
+		// 	compress: {
+		// 		warnings: false
+		// 	}
+		// })
 	]
 };
