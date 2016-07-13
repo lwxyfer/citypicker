@@ -2,6 +2,6 @@
  * entry for developing
  */
 import {
-	picker
+  picker
 } from './main';
 picker()
