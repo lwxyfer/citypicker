@@ -31,6 +31,6 @@ module.exports = {
       template: './docs/template.html',
       inject: 'body'
         // hash:true
-    }),
+    })
   ]
 };

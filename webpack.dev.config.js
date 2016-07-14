@@ -11,7 +11,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: './dist',
-    filename: 'picker.js',
+    filename: 'picker.js'
   },
   devServer: {
     inline: true,
